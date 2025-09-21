@@ -11,6 +11,7 @@ int main() {
     int dia_fab, mes_fab, ano_fab;
     double preco;
     int quantidade;
+    int item_existe = 0;
 
     printf("CADASTRO DE ITEM NO ESTOQUE\n");
 
@@ -37,6 +38,12 @@ int main() {
     printf("Digite a data de fabricação (dd mm aaaa): ");
     scanf("%d %d %d", &dia_fab, &mes_fab, &ano_fab);
     
+    item_existe = 1;
+    
+    if(item_existe == 1)
+    	printf("\nO item '%s' foi cadastrado com sucesso!\n", nome_produto);
+    else
+    	printf("\n?Nenhum item cadastrado!\n");
 
     return 0;
 }
