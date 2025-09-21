@@ -7,7 +7,7 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
 
     
-    char codigo_barras[50], nome_produto[100], fabricante_produto[100];
+    char codigo_barras[50] = "0000000000", nome_produto[100], fabricante_produto[100];
     int dia_fab, mes_fab, ano_fab;
     double preco;
     int quantidade;
