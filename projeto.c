@@ -123,6 +123,17 @@ int matricula;
                         break;
                     case 2:
                         // Visualização de produto
+                        if (item_existe) {
+                            printf("\n--- DADOS DO PRODUTO ---\n");
+                            printf("Codigo de barras: %s\n", codigo_barras);
+                            printf("Nome: %s\n", nome_produto);
+                            printf("Data de fabricacao: %02d/%02d/%04d\n", dia_fab, mes_fab, ano_fab);
+                            printf("Preco: R$ %.2lf\n", preco);
+                            printf("Fabricante: %s\n", fabricante_produto);
+                            printf("Quantidade em estoque: %d\n\n", quantidade);
+                        } else {
+                        printf("Vazio: Nenhum produto cadastrado.\n\n");
+                        }
                         break;
                     case 3:
                         // Visualização de venda
