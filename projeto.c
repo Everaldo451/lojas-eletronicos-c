@@ -5,14 +5,20 @@
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
+    // dados do funcionário
+int matricula;
+    char nome_funcionario[100], endereco_funcionario[100], telefone_funcionario[20];
+    int dia_nasc, mes_nasc, ano_nasc;
+    float salario;
+    char turno[30];
+    int funcionario_existe = 0;
     //Dados do item
     char codigo_barras[50], nome_produto[100], fabricante_produto[100];
     int dia_fab, mes_fab, ano_fab;
     double preco;
     int quantidade;
     int item_existe = 0;
-    //Dados do funcionário
-    int funcionario_existe = 0;
+
     //Dados da venda
     int quantidade_vendida;
     //
@@ -42,7 +48,7 @@ int main() {
                         printf("Digite o fabricante: ");
                         fgets(fabricante_produto, sizeof(fabricante_produto), stdin);
                         fabricante_produto[strcspn(fabricante_produto, "\n")] = '\0';
-    
+
                         printf("Digite o codigo de barras: ");
                         fgets(codigo_barras, sizeof(codigo_barras), stdin);
                         codigo_barras[strcspn(codigo_barras, "\n")] = '\0';
@@ -53,13 +59,13 @@ int main() {
 
                         printf("Digite a quantidade em estoque: ");
 	                    scanf("%d", &quantidade);
-                        getchar(); 
-    
+                        getchar();
+
                         printf("Digite a data de fabricação (dd mm aaaa): ");
                         scanf("%d %d %d", &dia_fab, &mes_fab, &ano_fab);
-    
+
                         item_existe = 1;
-    
+
                         if(item_existe == 1)
     	                    printf("\nO item '%s' foi cadastrado com sucesso!\n", nome_produto);
                         else
@@ -70,15 +76,15 @@ int main() {
                         // Cadastro de venda
                         printf("CADASTRO DE VENDAS\n");
 
-                        //Verificar se já há cadastros antes de seguir com o de vendas     
+                        //Verificar se já há cadastros antes de seguir com o de vendas
                         if (item_existe == 0) {
-                            printf("Cadastre um item antes de realizar a venda.\n");                     
+                            printf("Cadastre um item antes de realizar a venda.\n");
                         }
                         else if (funcionario_existe == 0) {
                             printf("Cadastre um funcionário antes de realizar a venda.\n");
                         }
                         else {
-                            //Cadastro da venda  
+                            //Cadastro da venda
                             printf("Digite a quantidade vendida: ");
                             scanf("%d", &quantidade_vendida);
 
@@ -87,7 +93,7 @@ int main() {
                                 printf("Estoque insuficiente! Temos apenas %d unidades.\n", quantidade);
                                 printf("Digite novamente a quantidade: ");
                                 scanf("%d", &quantidade_vendida);
-                            }    
+                            }
 
                             quantidade_Estoque = quantidade - quantidade_vendida;
                             quantidade = quantidade_Estoque;
@@ -99,10 +105,21 @@ int main() {
                     default:
                         break;
                 }
-            } else {
-                switch (opcao_menu_principal) {
-                    case 1:
-                        // Visualização de funcionário
+            } else if (opcao_menu_secundario == 2){
+               switch (opcao_menu_principal) {
+                    case 1: // Visualização de funcionário
+                        printf("\nDADOS DO FUNCIONÁRIO\n");
+                        if (funcionario_existe == 1) {
+                            printf("Matrícula: %d\n", matricula);
+                            printf("Nome: %s\n", nome_funcionario);
+                            printf("Endereço: %s\n", endereco_funcionario);
+                            printf("Telefone: %s\n", telefone_funcionario);
+                            printf("Data de Nascimento: %02d/%02d/%04d\n", dia_nasc, mes_nasc, ano_nasc);
+                            printf("Salário: %.2f\n", salario);
+                            printf("Turno: %s\n", turno);
+                        } else {
+                            printf("Nenhum funcionário cadastrado ainda.\n");
+                        }
                         break;
                     case 2:
                         // Visualização de produto
@@ -114,8 +131,12 @@ int main() {
                         break;
                 }
             }
-        } else if (opcao_menu_principal!=4) {
+        } else if (opcao_menu_principal != 4) {
             printf("Opção inválida!\n\n");
         }
-    } while (opcao_menu_principal!=4);
+
+    } while (opcao_menu_principal != 4);
+
+    printf("\nPrograma encerrado.\n");
+    return 0;
 }
