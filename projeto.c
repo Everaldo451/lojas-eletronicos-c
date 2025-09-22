@@ -6,7 +6,7 @@
 int main() {
     setlocale(LC_ALL, "Portuguese");
     // dados do funcionário
-int matricula;
+    int matricula;
     char nome_funcionario[100], endereco_funcionario[100], telefone_funcionario[20];
     int dia_nasc, mes_nasc, ano_nasc;
     float salario;
@@ -36,6 +36,32 @@ int matricula;
                 switch (opcao_menu_principal) {
                     case 1:
                         // Cadastro de funcionário
+                        
+	                    printf("\n--- Cadastro do Funcionário ---\n");
+                        printf("Digite a matrícula: ");
+                        scanf("%d", &matricula);
+                        getchar();
+
+                        printf("Digite o nome: ");
+                        fgets(nome_funcionario, sizeof(nome_funcionario), stdin);
+
+                        printf("Digite o endereço: ");
+                        fgets(endereco_funcionario, sizeof(endereco_funcionario), stdin);
+
+                        printf("Digite o telefone: ");
+                        fgets(telefone_funcionario, sizeof(telefone_funcionario), stdin);
+
+                        printf("Digite a data de nascimento (dia mes ano): ");
+                        scanf("%d %d %d", &dia_nasc, &mes_nasc, &ano_nasc);
+
+                        printf("Digite o salário: ");
+                        scanf("%f", &salario);
+                        getchar();
+
+                        printf("Digite o turno de trabalho: ");
+                        fgets(turno, sizeof(turno), stdin);
+
+                        funcionario_existe=1;
                         break;
                     case 2:
                         // Cadastro de produto
