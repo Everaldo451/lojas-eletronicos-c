@@ -14,7 +14,7 @@ int main() {
     //Dados do funcionário
     int funcionario_existe = 0;
     //Dados da venda
-    int quantidade_vendida, quantidade_Estoque;
+    int quantidade_vendida;
     //
     int opcao_menu_principal;
     printf("Bem vindo ao app de gestão da loja de eletrônicos!\n\n");
@@ -25,6 +25,7 @@ int main() {
             int opcao_menu_secundario;
             printf("Digite uma das seguintes opções:\n1-Cadastro\n2-Ver dados\n\n");
             scanf("%d", &opcao_menu_secundario);
+            getchar();
             if (opcao_menu_secundario==1) {
                 switch (opcao_menu_principal) {
                     case 1:
@@ -46,15 +47,15 @@ int main() {
                         fgets(codigo_barras, sizeof(codigo_barras), stdin);
                         codigo_barras[strcspn(codigo_barras, "\n")] = '\0';
 
-                        printf("Digite o pre�o (ex: 99.90): ");
+                        printf("Digite o preço (ex: 99.90): ");
                         scanf("%lf", &preco);
-                        getchar(); 
+                        getchar();
 
                         printf("Digite a quantidade em estoque: ");
 	                    scanf("%d", &quantidade);
                         getchar(); 
     
-                        printf("Digite a data de fabrica��o (dd mm aaaa): ");
+                        printf("Digite a data de fabricação (dd mm aaaa): ");
                         scanf("%d %d %d", &dia_fab, &mes_fab, &ano_fab);
     
                         item_existe = 1;
@@ -65,6 +66,7 @@ int main() {
     	                    printf("\n?Nenhum item cadastrado!\n");
                         break;
                     case 3:
+                        int quantidade_Estoque;
                         // Cadastro de venda
                         printf("CADASTRO DE VENDAS\n");
 
@@ -73,7 +75,7 @@ int main() {
                             printf("Cadastre um item antes de realizar a venda.\n");                     
                         }
                         else if (funcionario_existe == 0) {
-                            printf("Cadastre um funcion�rio antes de realizar a venda.\n");
+                            printf("Cadastre um funcionário antes de realizar a venda.\n");
                         }
                         else {
                             //Cadastro da venda  
