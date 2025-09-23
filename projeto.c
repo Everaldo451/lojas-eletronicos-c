@@ -21,15 +21,17 @@ int main() {
 
     //Dados da venda
     int quantidade_vendida;
+    double total_fatura;
+    int venda_existe = 0;
     //
     int opcao_menu_principal;
-    printf("Bem vindo ao app de gestão da loja de eletrônicos!\n\n");
+    printf("Bem vindo ao app de gestão da loja de eletrônicos!\n");
     do {
-        printf("Digite uma das seguintes opções:\n1-Controle de pessoal\n2-Controle de estoque\n3-Controle de vendas\n4-Encerrar programa\n\n");
+        printf("\nDigite uma das seguintes opções:\n1-Controle de pessoal\n2-Controle de estoque\n3-Controle de vendas\n4-Encerrar programa\n");
         scanf("%d", &opcao_menu_principal);
         if (opcao_menu_principal>=1 && opcao_menu_principal<=3) {
             int opcao_menu_secundario;
-            printf("Digite uma das seguintes opções:\n1-Cadastro\n2-Ver dados\n\n");
+            printf("\nDigite uma das seguintes opções:\n1-Cadastro\n2-Ver dados\n\n");
             scanf("%d", &opcao_menu_secundario);
             getchar();
             if (opcao_menu_secundario==1) {
@@ -44,12 +46,15 @@ int main() {
 
                         printf("Digite o nome: ");
                         fgets(nome_funcionario, sizeof(nome_funcionario), stdin);
+                        nome_funcionario[strcspn(nome_funcionario, "\n")] = '\0';
 
                         printf("Digite o endereço: ");
                         fgets(endereco_funcionario, sizeof(endereco_funcionario), stdin);
+                        endereco_funcionario[strcspn(endereco_funcionario, "\n")] = '\0';
 
                         printf("Digite o telefone: ");
                         fgets(telefone_funcionario, sizeof(telefone_funcionario), stdin);
+                        telefone_funcionario[strcspn(telefone_funcionario, "\n")] = '\0';
 
                         printf("Digite a data de nascimento (dia mes ano): ");
                         scanf("%d %d %d", &dia_nasc, &mes_nasc, &ano_nasc);
@@ -60,6 +65,7 @@ int main() {
 
                         printf("Digite o turno de trabalho: ");
                         fgets(turno, sizeof(turno), stdin);
+                        turno[strcspn(turno, "\n")] = '\0';
 
                         funcionario_existe=1;
                         break;
@@ -123,9 +129,12 @@ int main() {
 
                             quantidade_Estoque = quantidade - quantidade_vendida;
                             quantidade = quantidade_Estoque;
+                            total_fatura = quantidade_vendida*preco;
 
                             printf("Venda cadastrada com sucesso!\n");
                             printf("Quantidade restante em estoque: %d\n", quantidade);
+
+                            venda_existe=1;
                         }
                         break;
                     default:
@@ -163,6 +172,15 @@ int main() {
                         break;
                     case 3:
                         // Visualização de venda
+                        printf("\n--- DADOS DA VENDA ---\n");
+                        if (venda_existe) {
+                            printf("Nome do Vendedor: %s", nome_funcionario);
+                            printf("Produto: %s\n", nome_produto);
+                            printf("Quantidade Vendida: %d\n", quantidade_vendida);
+                            printf("Total da Fatura: R$ %.2lf\n", total_fatura);
+                        } else {
+                            printf("Nenhuma venda cadastrada ainda.\n");
+                        }
                         break;
                     default:
                         break;
