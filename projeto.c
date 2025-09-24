@@ -104,7 +104,6 @@ int main() {
     	                    printf("\n?Nenhum item cadastrado!\n");
                         break;
                     case 3:
-                        int quantidade_Estoque;
                         // Cadastro de venda
                         printf("CADASTRO DE VENDAS\n");
 
@@ -127,8 +126,7 @@ int main() {
                                 scanf("%d", &quantidade_vendida);
                             }
 
-                            quantidade_Estoque = quantidade - quantidade_vendida;
-                            quantidade = quantidade_Estoque;
+                            quantidade = quantidade - quantidade_vendida;
                             total_fatura = quantidade_vendida*preco;
 
                             printf("Venda cadastrada com sucesso!\n");
